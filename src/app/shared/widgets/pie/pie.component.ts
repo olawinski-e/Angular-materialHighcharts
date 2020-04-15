@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import HC_gantt from 'highcharts/modules/gantt';
 
@@ -8,6 +8,8 @@ import HC_gantt from 'highcharts/modules/gantt';
   styleUrls: ['./pie.component.scss'],
 })
 export class PieComponent implements OnInit {
+  @Input() data: [];
+
   chartOptions: {};
 
   Highcharts = Highcharts;
@@ -53,46 +55,7 @@ export class PieComponent implements OnInit {
         {
           name: 'Brands',
           colorByPoint: true,
-          data: [
-            {
-              name: 'Chrome',
-              y: 61.41,
-              sliced: true,
-              selected: true,
-            },
-            {
-              name: 'Internet Explorer',
-              y: 11.84,
-            },
-            {
-              name: 'Firefox',
-              y: 10.85,
-            },
-            {
-              name: 'Edge',
-              y: 4.67,
-            },
-            {
-              name: 'Safari',
-              y: 4.18,
-            },
-            {
-              name: 'Sogou Explorer',
-              y: 1.64,
-            },
-            {
-              name: 'Opera',
-              y: 1.6,
-            },
-            {
-              name: 'QQ',
-              y: 1.2,
-            },
-            {
-              name: 'Other',
-              y: 2.61,
-            },
-          ],
+          data: this.data,
         },
       ],
     };
