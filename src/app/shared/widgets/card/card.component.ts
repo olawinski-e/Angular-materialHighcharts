@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import HC_gantt from 'highcharts/modules/gantt';
 
@@ -8,6 +8,11 @@ import HC_gantt from 'highcharts/modules/gantt';
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
+  @Input() label: string;
+  @Input() total: string;
+  @Input() percentage: string;
+  @Input() data = [];
+
   chartOptions: {};
 
   Highcharts = Highcharts;
@@ -18,6 +23,10 @@ export class CardComponent implements OnInit {
     this.chartOptions = {
       chart: {
         type: 'area',
+        backgroundColor: null,
+        borderWidth: 0,
+        margin: [2, 2, 2, 2],
+        height: 60,
       },
       title: {
         text: null,
@@ -35,10 +44,32 @@ export class CardComponent implements OnInit {
       credits: {
         enabled: false,
       },
+      xAxis: {
+        labels: {
+          enabled: false,
+        },
+        title: {
+          text: null,
+        },
+        startOnTick: false,
+        endOnTick: false,
+        tickOptions: [],
+      },
+      yAxis: {
+        labels: {
+          enabled: false,
+        },
+        title: {
+          text: null,
+        },
+        startOnTick: false,
+        endOnTick: false,
+        tickOptions: [],
+      },
       exporting: {
         enabled: false,
       },
-      series: [{ data: [71, 78, 30, 39, 66] }],
+      series: this.data,
     };
 
     HC_gantt(Highcharts);
